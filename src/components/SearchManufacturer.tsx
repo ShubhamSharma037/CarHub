@@ -38,7 +38,7 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManufacture
           {/* Input field for searching */}
           <Combobox.Input
             className='search-manufacturer__input'
-            displayValue={(item: string) => item}
+            displayValue={(manufacturer: string) => manufacturer}
             onChange={(event) => setQuery(event.target.value)} // Update the search query when the input changes
             placeholder='Volkswagen...'
           />

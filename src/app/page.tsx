@@ -1,7 +1,14 @@
 import { CustomFilter, Hero } from '@/components'
-import Searchbar from '@/components/Searchbar'
+import Searchbar from '@/components/SearchBar'
+import { fetchCars } from '@/utils'
+import CarCard from '@/components/CarCard';
+import { CarProps } from '@/types';
 
-export default function Home() {
+
+export default async function Home() {
+  const allCars = await fetchCars();
+
+
   return (
     <main className="overflow-hidden">
       <Hero/>
@@ -16,11 +23,21 @@ export default function Home() {
         <div className="home__filters">
           <Searchbar/>
 
-          {/* <div className="home__filter-container">
+          <div className="home__filter-container">
             <CustomFilter title='fuel'/>
             <CustomFilter title='year'/>
-          </div> */}
+          </div>
         </div>
+
+        <section>
+          <div className="home__cars-wrapper">
+            {
+              allCars.map((car : CarProps)=>(
+                <CarCard car={car}/>
+              ))
+            }
+          </div>
+        </section>
       </div>
     </main>
   )
